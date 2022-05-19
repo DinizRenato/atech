@@ -1,9 +1,17 @@
 package com.atech.teste.domain;
 
+import java.util.List;
+
 public class Retangulo {
     
     private Linha superior;
     private Linha inferior;
+
+    private List<Linha> linhas;
+
+    public Retangulo(List<Linha> linhas) {
+        this.linhas = linhas;
+    }
 
     public Retangulo(Linha superior, Linha inferior) {
         this.superior = superior;
@@ -24,23 +32,27 @@ public class Retangulo {
     }
 
     public int getAltura(){
-        return this.inferior.getFim().getLinha() - this.superior.getInicio().getLinha();
+        return this.linhas.size();
+    }
+    public int getLargura(){
+        return this.linhas.get(0).getPontos().size();
     }
 
     public int getArea(){
-        return this.inferior.getLargura() * this.getAltura();
+        return this.getLargura() * this.getAltura();
+    }
+
+    public List<Linha> getLinhas() {
+        return linhas;
+    }
+
+    public void setLinhas(List<Linha> linhas) {
+        this.linhas = linhas;
     }
 
     @Override
     public String toString() {
-        return 
-            "Altura.: " + this.getAltura() +
-            " Area.: " + this.getArea() + 
-            " LS.: " + this.superior.getInicio().getLinha() + " I: " + this.superior.getInicio().getColuna() + " F: " + this.superior.getFim().getColuna() + 
-            " LI.: " + this.inferior.getInicio().getLinha() + " I: " + this.inferior.getInicio().getColuna() + " F: " + this.inferior.getFim().getColuna() + 
-            "--------------------------------";
+        return "Area = " + this.getArea();
     }
-
     
-
 }
